@@ -1,5 +1,7 @@
 import React from 'react';
 import {TextInput, StyleSheet, Text, View, Image} from 'react-native';
+import 'crypto-js/lib-typedarrays';
+import 'amazon-cognito-identity-js';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {Button, Input} from 'react-native-elements';
 import {Auth} from 'aws-amplify';
@@ -61,7 +63,11 @@ export default class SignIn extends React.Component {
           secureTextEntry={true}
           placeholder="***********"
         />
-        <View style={{flexDirection: 'row', justifyContent: 'space-evenly'}}>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-evenly',
+          }}>
           <Text>Remember me</Text>
           <TouchableOpacity>
             <Text>Forgot Password?</Text>
@@ -74,6 +80,11 @@ export default class SignIn extends React.Component {
             borderRadius: 30,
             padding: 15,
             marginBottom: 20,
+            elevation: 5,
+            shadowColor: 'gray',
+            shadowOffset: {height: 5, width: 5},
+            shadowRadius: 5,
+            shadowOpacity: 1,
           }}>
           <Text style={{alignSelf: 'center', color: 'white', fontSize: 20}}>
             Login

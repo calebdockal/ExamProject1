@@ -2,6 +2,8 @@ import React from 'react';
 import {StyleSheet} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import StackNavScreen from './components/StackNav';
+import 'crypto-js/lib-typedarrays';
+import 'amazon-cognito-identity-js';
 import Amplify from 'aws-amplify';
 import awsconfig from './aws-exports';
 

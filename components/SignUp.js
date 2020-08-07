@@ -7,6 +7,8 @@ import {
   ScrollView,
   Modal,
 } from 'react-native';
+import 'crypto-js/lib-typedarrays';
+import 'amazon-cognito-identity-js';
 import {Auth} from 'aws-amplify';
 import {Input, Button} from 'react-native-elements';
 import {TouchableOpacity} from 'react-native-gesture-handler';
@@ -93,22 +95,10 @@ export default class SignUp extends React.Component {
             placeholder="John@email.com"
           />
           <Text style={styles.titleStyle}>Date of Birth :</Text>
-          <TouchableOpacity style={styles.input}>
-            <TextInput
-              onChangeText={(value) => this.setState({birthdate: value})}
-              style={styles.input}
-              placeholder=""
-            />
-            <Icon
-              name="calendar"
-              size={30}
-              style={{
-                alignSelf: 'flex-end',
-                marginRight: 20,
-                marginTop: 9,
-                color: '#1fc7ff',
-              }}></Icon>
-          </TouchableOpacity>
+          <Input
+            rightIcon={{type: 'font-awesome', name: 'calendar'}}
+            onChangeText={(value) => this.setState({birthdate: value})}
+          />
           <Text style={styles.titleStyle}>Gender :</Text>
           <TextInput
             onChangeText={(value) => this.setState({gender: value})}
@@ -143,6 +133,11 @@ export default class SignUp extends React.Component {
               borderRadius: 30,
               padding: 15,
               marginBottom: 20,
+              elevation: 5,
+              shadowColor: 'gray',
+              shadowOffset: {height: 5, width: 5},
+              shadowRadius: 5,
+              shadowOpacity: 1,
             }}>
             <Text style={{alignSelf: 'center', color: 'white', fontSize: 20}}>
               Register
@@ -194,5 +189,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 16,
   },
-  titleStyle: {fontWeight: '900', fontSize: 19},
+  titleStyle: {fontWeight: 'bold', fontSize: 19},
 });

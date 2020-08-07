@@ -1,4 +1,5 @@
 import React from 'react';
+import {NavigationContainer} from '@react-navigation/native';
 import {
   View,
   Text,
@@ -10,6 +11,7 @@ import {
   ScrollView,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import BottomTabNavigator from './TabNavigator';
 
 export default class Profile extends React.Component {
   render() {
@@ -27,6 +29,7 @@ export default class Profile extends React.Component {
                 fontSize: 25,
                 color: '#6e6e6e',
                 paddingTop: 15,
+                marginLeft: 10,
               }}>
               MY ACCOUNT
             </Text>
@@ -46,12 +49,13 @@ export default class Profile extends React.Component {
               height: 110,
               padding: 25,
               borderRadius: 60,
+              resizeMode: 'cover',
             }}>
             <Image
               style={{
                 justifyContent: 'center',
                 alignSelf: 'center',
-                resizeMode: 'center',
+                resizeMode: 'cover',
               }}
               source={require('../assets/edit-profile.png')}
             />
@@ -126,11 +130,10 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginRight: 20,
     height: 70,
-    borderWidth: 0.2,
+    borderWidth: 0.1,
     alignItems: 'center',
     borderRadius: 35,
     backgroundColor: 'white',
-    borderWidth: 0.5,
     borderColor: 'gray',
     padding: 15,
     marginBottom: 10,
@@ -142,31 +145,33 @@ const styles = StyleSheet.create({
   },
   textStyle: {
     flex: 1,
-    //marginRight: 30,
+
     marginLeft: 10,
-    //fontWeight: 'bold',
   },
-  iconStyle: {
-    //alignSelf: 'flex-end',
-    //marginLeft: 20,
-  },
+  iconStyle: {},
   iconStyle2: {
     color: 'yellow',
   },
   viewStyle: {
     alignItems: 'center',
-    backgroundColor: '#f5f5f5',
-    borderTopWidth: 0.1,
-    borderTopColor: '#f4f4f4',
+    backgroundColor: '#fafafa',
+    borderWidth: 1.5,
+    borderColor: '#f4f4f4',
     borderStartColor: '#f3f3f3',
     borderTopEndRadius: 25,
     borderTopLeftRadius: 25,
+    elevation: 5,
+    shadowColor: 'gray',
+    shadowOffset: {height: 5, width: 5},
+    shadowRadius: 5,
+    shadowOpacity: 1,
   },
   loginTextStyle: {
     fontWeight: '600',
-    fontSize: 20,
+    fontSize: 17,
     color: 'lightgray',
     marginRight: 20,
+    marginTop: 5,
     paddingTop: 15,
   },
 });
