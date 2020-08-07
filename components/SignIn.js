@@ -1,31 +1,31 @@
 import React from 'react';
 import {TextInput, StyleSheet, Text, View, Image} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-
+import {Button, Input} from 'react-native-elements';
 import {Auth} from 'aws-amplify';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
 export default class SignIn extends React.Component {
-  state = {
-    email: '',
-    password: '',
-    user: {},
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      email: '',
+      password: '',
+      user: {},
+    };
+  }
   onChangeText(key, value) {
     this.setState({
       [key]: value,
     });
   }
-  signIn() {
+  handleSignIn = () => {
     const {email, password} = this.state;
     Auth.signIn(email, password)
-      .then((user) => {
-        this.setState({user});
-        this.props.screenProps.authenticate(true);
-        console.log('successful sign in!');
-      })
-      .catch((err) => console.log('error signing in!: ', err));
-  }
+      .then((user) => props.navigation.navigate('Profile'))
+      .catch((err) => console.log(err));
+  };
   render() {
     return (
       <View style={styles.container}>
@@ -50,13 +50,13 @@ export default class SignIn extends React.Component {
         />
         <Text style={{fontWeight: 'bold', padding: 10}}>Your Email :</Text>
         <TextInput
-          onChangeText={(value) => this.onChangeText('email', value)}
+          onChangeText={(value) => this.setState({email: value})}
           style={styles.input}
           placeholder="John@email.com"
         />
         <Text style={{fontWeight: 'bold', padding: 10}}>Password :</Text>
         <TextInput
-          onChangeText={(value) => this.onChangeText('password', value)}
+          onChangeText={(value) => this.setState({password: value})}
           style={styles.input}
           secureTextEntry={true}
           placeholder="***********"
@@ -68,7 +68,7 @@ export default class SignIn extends React.Component {
           </TouchableOpacity>
         </View>
         <TouchableOpacity
-          onPress={this.signIn.bind(this)}
+          onPress={this.handleSignIn}
           style={{
             backgroundColor: '#2bcaff',
             borderRadius: 30,
